@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="burp-asn1" default="plugin">
+	<target name="plugin" depends="classes">
+		<zip destfile="burp-asn1.jar">
+			<fileset dir="build">
+				<include name="burp/BurpExtender.class"/>
+				<include name="burp/Asn1Editor*.class"/>
+				<include name="org/apache/commons/io/IOUtils.class"/>
+				<include name="org/apache/commons/io/output/*.class"/>
+			</fileset>
+		</zip>
+	</target>
+	<target name="classes">
+		<mkdir dir="build"/>
+		<javac srcdir="src:api" destdir="build" includeantruntime="false" />
+	</target>
+	<target name="clean">
+		<delete dir="build"/>
+		<delete file="burp-asn1.jar"/>
+	</target>
+</project>
