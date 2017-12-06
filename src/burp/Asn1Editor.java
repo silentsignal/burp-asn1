@@ -42,7 +42,8 @@ public class Asn1Editor implements IMessageEditorTab
 		}
 		int payloadLength = content.length - bodyOffset;
 		if (payloadLength >= 3 && content[bodyOffset] == 'M' &&
-				content[bodyOffset + 1] == 'I' && content[bodyOffset + 2] == 'I') {
+				content[bodyOffset + 1] == 'I' && content[bodyOffset + 2] >= 'G' &&
+				content[bodyOffset + 2] <= 'I') {
 			byte[] payload = new byte[payloadLength];
 			System.arraycopy(content, bodyOffset, payload, 0, payloadLength);
 			return helpers.base64Decode(payload);
